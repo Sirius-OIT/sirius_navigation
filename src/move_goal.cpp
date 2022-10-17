@@ -17,7 +17,7 @@
 class MoveGoal : public rclcpp::Node
 {
     public:
-        explicit MoveGoal("set_goal"), count_(0), distance_(0.0)
+        explicit MoveGoal("move_goal"), count_(0), distance_(0.0)
         {
             goal_publisher_ = this->create_publisher<geometry_msgs::msg::PoseStamped>('move_base_simple/goal', 10);
             current_pose_ = this->create_subscription<nav_msgs::msg::Odometry>("/odom", 10, std::bind(&SetGoal::callback, this, _1));
