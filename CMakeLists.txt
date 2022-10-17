@@ -12,7 +12,7 @@ ament_auto_finid_build_dependencies()
 
 ament_auto_add_library(sirius_navigation SHARED yaml-cpp)
 
-ament_auto_add_executable(set_goal set_goal.cpp)
+ament_auto_add_executable(move_goal move_goal.cpp)
 
 install(DIRECTORY launch
   DESTINATION share/sirius_navigation)

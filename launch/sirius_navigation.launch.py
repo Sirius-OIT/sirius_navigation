@@ -3,6 +3,7 @@ import os
 from launch import LaunchDescription
 from launch_ros.actions import Node
 from launch.action import IncludeLaunchDescription, DeclareLaunchArgument
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
@@ -26,7 +27,7 @@ def generate_launch_description():
         Node(
             package = 'sirius_navigation',
             namespace = 'sirius',
-            executable = 'sirius_navigation',
+            executable = 'move_goal',
             name = 'sirius_navigation',
             parameters = [{goal_point_file_:config_path, goal_tolerance_:2.0}]
         ),

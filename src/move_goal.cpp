@@ -14,10 +14,10 @@
 #include "sensor_msgs/msg/laser_scan.hpp"
 #include "nav_msgs/msg/odometry.hpp"
 
-class SetGoal : public rclcpp::Node
+class MoveGoal : public rclcpp::Node
 {
     public:
-        explicit SetGoal("set_goal"), count_(0), distance_(0.0)
+        explicit MoveGoal("set_goal"), count_(0), distance_(0.0)
         {
             goal_publisher_ = this->create_publisher<geometry_msgs::msg::PoseStamped>('move_base_simple/goal', 10);
             current_pose_ = this->create_subscription<nav_msgs::msg::Odometry>("/odom", 10, std::bind(&SetGoal::callback, this, _1));
@@ -83,7 +83,7 @@ class SetGoal : public rclcpp::Node
 int main(int argc, char * argv[])
 {
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<SetGoal>());
+    rclcpp::spin(std::make_shared<MoveGoal>());
     rclcpp::shutdown();
     return 0;
 }
