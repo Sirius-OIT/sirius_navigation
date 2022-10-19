@@ -8,11 +8,11 @@ endif()
 # find dependencies
 find_package(ament_cmake_auto REQUIRED)
 find_package(yaml-cpp REQUIRED)
-ament_auto_finid_build_dependencies()
+ament_auto_find_build_dependencies()
 
-ament_auto_add_library(sirius_navigation SHARED yaml-cpp)
-
-ament_auto_add_executable(move_goal move_goal.cpp)
+ament_auto_add_executable(move_goal src/move_goal.cpp)
+# ament_target_dependencies(move_goal yaml-cpp)
+target_link_libraries(move_goal yaml-cpp)
 
 install(DIRECTORY launch
   DESTINATION share/sirius_navigation)
@@ -21,7 +21,6 @@ install(DIRECTORY config
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
-  set(ament_cmake_copyright_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
 
